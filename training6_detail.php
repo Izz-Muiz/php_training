@@ -1,6 +1,6 @@
 <?php
 if (!isset($_GET["name"]) || !isset($_GET["age"]) || !isset($_GET["city"])) {
-    header("Location: training6_getpost.php");
+    header("Location: training6_get.php");
     exit;
 }
 ?>
@@ -19,6 +19,6 @@ if (!isset($_GET["name"]) || !isset($_GET["age"]) || !isset($_GET["city"])) {
             <li>Age : <?= $_GET["age"] ?></li>
             <li>City : <?= $_GET["city"] ?></li>
         </ul>
-    <a href="training6_getpost.php">Back</a>
+    <a href="training6_get.php">Back</a>
 </body>
 </html>
