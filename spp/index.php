@@ -3,7 +3,11 @@
 require "function.php"; 
 
 // Fetch students data from the database
-$students = query("SELECT * FROM students"); 
+$students = query("SELECT * FROM students ORDER BY name ASC"); 
+
+if (isset($_POST["find"])) {
+    $students = find($_POST["search"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +25,11 @@ $students = query("SELECT * FROM students");
     </header>
 
     <main>
+        <form action="" method="post">
+            <input type="text" name="search" id="search" autofocus placeholder="Search" autocomplete="off">
+            <button type="submit" name="find">FInd</button>
+        </form>
+        <br>
         <table border="1" cellpadding="10" cellspacing="0">
             <thead>
                 <tr> 

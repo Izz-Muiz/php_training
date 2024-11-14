@@ -84,4 +84,14 @@ function deleteStudent($id) {
     mysqli_query($conn, $delete);
     return mysqli_affected_rows($conn);
 }
+
+function find($search) {
+    $query = "SELECT * FROM students WHERE 
+                name LIKE '%$search%' 
+                OR ic LIKE '%$search%' 
+                OR email LIKE '%$search%' 
+                OR course LIKE '%$search%'";
+    return query($query);
+}
+
 ?>
