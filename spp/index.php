@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
 // Include necessary functions
 require "function.php"; 
 
@@ -20,6 +25,8 @@ if (isset($_POST["find"])) {
 </head>
 <body>
     <header>
+
+    <a href="logout.php">Logout</a>
         <h1>Student Registration</h1>
         <a href="add.php">Add New Student</a>
     </header>
