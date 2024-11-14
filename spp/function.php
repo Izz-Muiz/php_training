@@ -44,7 +44,12 @@ function addStudent($data) {
     $name = htmlspecialchars($data["name"]);
     $email = htmlspecialchars($data["email"]);
     $course = htmlspecialchars($data["course"]);
-    $image = htmlspecialchars($data["image"]);
+
+    $image = upload();
+    if (!$image) {
+        return false;
+    }
+    // $image = htmlspecialchars($data["image"]);
 
     $insert = "INSERT INTO students VALUES
     ('', '$ic', '$name', '$email', '$course', '$image')";
@@ -61,7 +66,14 @@ function updateStudent($data) {
     $name = htmlspecialchars($data["name"]);
     $email = htmlspecialchars($data["email"]);
     $course = htmlspecialchars($data["course"]);
-    $image = htmlspecialchars($data["image"]);
+    // $image = htmlspecialchars($data["image"]);
+    $oldImage = htmlspecialchars($data["oldImage"]);
+    
+    if ($_FILES['image']['error'] === 4) {
+        $image = $oldImage;
+    } else {
+        $image = upload();
+    }
 
     $update = "UPDATE students SET 
                 ic = '$ic',
@@ -92,6 +104,37 @@ function find($search) {
                 OR email LIKE '%$search%' 
                 OR course LIKE '%$search%'";
     return query($query);
+}
+
+function upload() {
+    $fileName = $_FILES['image']['name'];
+    $fileSize = $_FILES['image']['size'];
+    $fileError = $_FILES['image']['error'];
+    $fileTemp = $_FILES['image']['tmp_name'];
+
+    if ($fileError === 4) {
+        echo "<script>Upload FIle!</script>";
+        return false;
+    }
+
+    $validExtension = ['jpg', 'jpeg', 'png'];
+    $extension = explode('.',$fileName);
+    $extension = strtolower(end($extension));
+
+    if (!in_array($extension, $validExtension)) {
+        echo "<script>Not Image!</script>";
+        return false;
+    }
+
+    if ($fileSize > 1000000) {
+        echo "<script>Too Big!</script>";
+        return false;
+    }
+    $newFileName = uniqid();
+    $newFileName .= '.';
+    $newFileName .= $extension;
+    move_uploaded_file($fileTemp, 'img/' . $fileName);
+    return $fileName;
 }
 
 ?>
