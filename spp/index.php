@@ -25,10 +25,10 @@ if (isset($_POST["find"])) {
     </header>
 
     <main>
-        <form action="" method="post">
-            <input type="text" name="search" id="search" autofocus placeholder="Search" autocomplete="off">
-            <button type="submit" name="find">FInd</button>
-        </form>
+    <form class="search-form" action="" method="post">
+        <input type="text" class="search-input" name="search" id="search" autofocus placeholder="Search" autocomplete="off">
+        <button type="submit" class="search-button" name="find">Find</button>
+    </form>
         <br>
         <table border="1" cellpadding="10" cellspacing="0">
             <thead>
