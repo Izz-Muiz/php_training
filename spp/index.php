@@ -17,6 +17,7 @@ $students = query("SELECT * FROM students");
 <body>
     <header>
         <h1>Student Registration</h1>
+        <a href="add.php">Add New Student</a>
     </header>
 
     <main>
@@ -38,7 +39,7 @@ $students = query("SELECT * FROM students");
                     <tr>
                         <td><?= $i; ?></td>
                         <td>
-                            <a href="edit.php?id=<?= $student['id']; ?>">Edit</a>
+                            <a href="update.php?id=<?= $student['id']; ?>">Update</a>
                             <a href="delete.php?id=<?= $student['id']; ?>" onclick="return confirm('Are you sure you want to delete this student?');">Delete</a>
                         </td>
                         <td>

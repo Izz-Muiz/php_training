@@ -37,4 +37,51 @@ function query($query) {
     }
     return $rows;
 }
+
+function addStudent($data) {
+    global $conn;
+    $ic = htmlspecialchars($data["ic"]);
+    $name = htmlspecialchars($data["name"]);
+    $email = htmlspecialchars($data["email"]);
+    $course = htmlspecialchars($data["course"]);
+    $image = htmlspecialchars($data["image"]);
+
+    $insert = "INSERT INTO students VALUES
+    ('', '$ic', '$name', '$email', '$course', '$image')";
+
+    mysqli_query($conn, $insert);
+
+    return mysqli_affected_rows($conn);
+}
+
+function updateStudent($data) {
+    global $conn;
+    $id = $data["id"];
+    $ic = htmlspecialchars($data["ic"]);
+    $name = htmlspecialchars($data["name"]);
+    $email = htmlspecialchars($data["email"]);
+    $course = htmlspecialchars($data["course"]);
+    $image = htmlspecialchars($data["image"]);
+
+    $update = "UPDATE students SET 
+                ic = '$ic',
+                name = '$name',
+                email = '$email',
+                course = '$course',
+                image = '$image'
+               WHERE id = $id
+                ";
+
+    mysqli_query($conn, $update);
+
+    return mysqli_affected_rows($conn);
+}
+
+function deleteStudent($id) {
+    global $conn;
+
+    $delete = "DELETE FROM students WHERE id = '$id'";
+    mysqli_query($conn, $delete);
+    return mysqli_affected_rows($conn);
+}
 ?>
