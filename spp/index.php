@@ -40,7 +40,7 @@ if (isset($_POST["find"])) {
         <main>
             <form class="search-form" action="" method="post">
                 <input type="text" class="search-input" name="search" id="search" autofocus placeholder="Search" autocomplete="off">
-                <button type="submit" class="search-button" name="find">Find</button>
+                <button type="submit" class="search-button" name="find" id='find'>Find</button>
             </form>
             <br>
             <?php if($activePage > 1) : ?>
@@ -101,6 +101,7 @@ if (isset($_POST["find"])) {
     <footer>
         <p>&copy; <?= date("Y"); ?> Student Registration System</p>
     </footer>
+    <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
